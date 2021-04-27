@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 硬盘上驱动包的路径，必须是绝对路径 -->
+	<classPathEntry
+		location="C:\MyTools\.m2\repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar" />
+	<!-- 指定运行环境是mybatis3的版本 -->
+	<context id="testTables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- 是否取消注释 -->
+			<property name="suppressAllComments" value="true" />
+			<!-- 是否生成注释代时间戳 -->
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		<!-- jdbc 连接信息 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://10.18.27.27:3306/gov-apis"
+			userId="dzzw" password="dzzw">
+		</jdbcConnection>
+
+		<!-- targetPackage指定模型在生成在哪个包 ,targetProject指定项目的src, -->
+		<javaModelGenerator targetPackage="org.lyh.springbootmybatis.entity"
+			targetProject="SpringBootMyBatis/src/main/java">
+			<!-- 去除字段前后空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 指定映射文件的位置 -->
+		<sqlMapGenerator targetPackage="org.lyh.springbootmybatis.mapper"
+			targetProject="SpringBootMyBatis/src/main/resources" />
+		<!-- Mapper(Dao)类生成的位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="org.lyh.springbootmybatis.mapper" targetProject="SpringBootMyBatis/src/main/java" />
+		<!-- tableName：数据库表的名字， domainObjectName：生成持久化类的名称 -->
+		<table tableName="T_API_MGR_SYSINFO" domainObjectName="APIMgrSysinfo" />
+
+	</context>
+</generatorConfiguration>

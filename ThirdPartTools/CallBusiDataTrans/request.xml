@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.test.linglong.plm.dxc.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:SimpleTestService>
+         <!--Optional:-->
+         <name>aaa</name>
+      </ser:SimpleTestService>
+   </soapenv:Body>
+</soapenv:Envelope>

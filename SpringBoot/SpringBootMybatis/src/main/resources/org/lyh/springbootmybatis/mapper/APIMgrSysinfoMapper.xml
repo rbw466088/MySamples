@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.lyh.springbootmybatis.mapper.APIMgrSysinfoMapper" >
+  <resultMap id="BaseResultMap" type="org.lyh.springbootmybatis.entity.APIMgrSysinfo" >
+    <id column="row_guid" property="rowGuid" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
+    <result column="sys_code" property="sysCode" jdbcType="VARCHAR" />
+    <result column="sys_desc" property="sysDesc" jdbcType="VARCHAR" />
+    <result column="sys_name" property="sysName" jdbcType="VARCHAR" />
+    <result column="sys_upwd" property="sysUpwd" jdbcType="VARCHAR" />
+    <result column="sys_uname" property="sysUname" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <result column="sys_salt" property="sysSalt" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    row_guid, create_time, status, updated_time, sys_code, sys_desc, sys_name, sys_upwd, 
+    sys_uname, role_id, sys_salt
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.lyh.springbootmybatis.entity.APIMgrSysinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_API_MGR_SYSINFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_API_MGR_SYSINFO
+    where row_guid = #{rowGuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_API_MGR_SYSINFO
+    where row_guid = #{rowGuid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.lyh.springbootmybatis.entity.APIMgrSysinfoExample" >
+    delete from T_API_MGR_SYSINFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.lyh.springbootmybatis.entity.APIMgrSysinfo" >
+    insert into T_API_MGR_SYSINFO (row_guid, create_time, status, 
+      updated_time, sys_code, sys_desc, 
+      sys_name, sys_upwd, sys_uname, 
+      role_id, sys_salt)
+    values (#{rowGuid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{updatedTime,jdbcType=TIMESTAMP}, #{sysCode,jdbcType=VARCHAR}, #{sysDesc,jdbcType=VARCHAR}, 
+      #{sysName,jdbcType=VARCHAR}, #{sysUpwd,jdbcType=VARCHAR}, #{sysUname,jdbcType=VARCHAR}, 
+      #{roleId,jdbcType=VARCHAR}, #{sysSalt,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.lyh.springbootmybatis.entity.APIMgrSysinfo" >
+    insert into T_API_MGR_SYSINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rowGuid != null" >
+        row_guid,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+      <if test="sysCode != null" >
+        sys_code,
+      </if>
+      <if test="sysDesc != null" >
+        sys_desc,
+      </if>
+      <if test="sysName != null" >
+        sys_name,
+      </if>
+      <if test="sysUpwd != null" >
+        sys_upwd,
+      </if>
+      <if test="sysUname != null" >
+        sys_uname,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="sysSalt != null" >
+        sys_salt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rowGuid != null" >
+        #{rowGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCode != null" >
+        #{sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysDesc != null" >
+        #{sysDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sysName != null" >
+        #{sysName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUpwd != null" >
+        #{sysUpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUname != null" >
+        #{sysUname,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysSalt != null" >
+        #{sysSalt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.lyh.springbootmybatis.entity.APIMgrSysinfoExample" resultType="java.lang.Integer" >
+    select count(*) from T_API_MGR_SYSINFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_API_MGR_SYSINFO
+    <set >
+      <if test="record.rowGuid != null" >
+        row_guid = #{record.rowGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedTime != null" >
+        updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sysCode != null" >
+        sys_code = #{record.sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysDesc != null" >
+        sys_desc = #{record.sysDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysName != null" >
+        sys_name = #{record.sysName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysUpwd != null" >
+        sys_upwd = #{record.sysUpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysUname != null" >
+        sys_uname = #{record.sysUname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleId != null" >
+        role_id = #{record.roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysSalt != null" >
+        sys_salt = #{record.sysSalt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_API_MGR_SYSINFO
+    set row_guid = #{record.rowGuid,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=INTEGER},
+      updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
+      sys_code = #{record.sysCode,jdbcType=VARCHAR},
+      sys_desc = #{record.sysDesc,jdbcType=VARCHAR},
+      sys_name = #{record.sysName,jdbcType=VARCHAR},
+      sys_upwd = #{record.sysUpwd,jdbcType=VARCHAR},
+      sys_uname = #{record.sysUname,jdbcType=VARCHAR},
+      role_id = #{record.roleId,jdbcType=VARCHAR},
+      sys_salt = #{record.sysSalt,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lyh.springbootmybatis.entity.APIMgrSysinfo" >
+    update T_API_MGR_SYSINFO
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCode != null" >
+        sys_code = #{sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysDesc != null" >
+        sys_desc = #{sysDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sysName != null" >
+        sys_name = #{sysName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUpwd != null" >
+        sys_upwd = #{sysUpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUname != null" >
+        sys_uname = #{sysUname,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysSalt != null" >
+        sys_salt = #{sysSalt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where row_guid = #{rowGuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lyh.springbootmybatis.entity.APIMgrSysinfo" >
+    update T_API_MGR_SYSINFO
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      sys_code = #{sysCode,jdbcType=VARCHAR},
+      sys_desc = #{sysDesc,jdbcType=VARCHAR},
+      sys_name = #{sysName,jdbcType=VARCHAR},
+      sys_upwd = #{sysUpwd,jdbcType=VARCHAR},
+      sys_uname = #{sysUname,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=VARCHAR},
+      sys_salt = #{sysSalt,jdbcType=VARCHAR}
+    where row_guid = #{rowGuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

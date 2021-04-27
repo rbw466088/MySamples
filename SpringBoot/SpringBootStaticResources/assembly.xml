@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3 http://maven.apache.org/xsd/assembly-1.1.3.xsd">
+	<id>package</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<!-- 改为false不会出现两层相同的目录 -->
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>${project.build.directory}${file.separator}classes</directory>
+			<outputDirectory>WEB-INF${file.separator}classes</outputDirectory>
+			<excludes>
+				<exclude>META-INF/resources/**</exclude>
+				<exclude>static/**</exclude>
+				<exclude>public/**</exclude>
+				<exclude>resources/**</exclude>
+				<exclude>templates/**</exclude>
+			</excludes>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources</directory>
+			<outputDirectory>WEB-INF${file.separator}classes</outputDirectory>
+			<excludes>
+				<exclude>META-INF/resources/**</exclude>
+				<exclude>static/**</exclude>
+				<exclude>public/**</exclude>
+				<exclude>resources/**</exclude>
+				<exclude>templates/**</exclude>
+			</excludes>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources/META-INF/resources</directory>
+			<outputDirectory>${file.separator}</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources/static</directory>
+			<outputDirectory>${file.separator}</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources/public</directory>
+			<outputDirectory>${file.separator}</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources/resources</directory>
+			<outputDirectory>${file.separator}</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/webapp</directory>
+			<outputDirectory>${file.separator}</outputDirectory>
+		</fileSet>
+
+	</fileSets>
+
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>WEB-INF${file.separator}lib</outputDirectory>
+			<scope>runtime</scope>
+			<!--<unpack>false</unpack> -->
+			<excludes>
+				<!-- 排除自己的jar -->
+				<exclude>${groupId}:${artifactId}</exclude>
+			</excludes>
+		</dependencySet>
+	</dependencySets>
+</assembly>
